@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block customcss %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+{% endblock customcss %}
+{% block content %}
+<h4>おしゃれサイト投稿画面</h4>
+<div class="container create-container">
+<form action="{% url 'createfunc' %}" method="POST">
+    {% csrf_token %}
+    <p>サイト名：<input type="text" name="sitename" size="30" maxlength="40"></p>
+    <p>サイト種類：
+        <select name="sitekind" id="kind-select">
+        <option value="blog">ブログサイト</option>
+        <option value="promo">プロモーションサイト</option>
+        <option value="portfo">ポートフォリオサイト</option>
+        <option value="ecsite">ECサイト</option>
+        <option value="corp">コーポレートサイト</option>
+        <option value="recru">リクルートサイト</option>
+        <option value="landing">ランディングページ</option>
+        </select>
+    </p>
+    <p>サイトURL：<input type="url" name="siteurl" size="30" maxlength="40"></p>
+    <p>ユーザー名：<input type="text" name="username" size="30" maxlength="40"></p>
+    <p>パスワード：<input type="password" name="password" size="30" maxlength="40"></p>
+    <input type="submit" value="投稿する" class="btn btn-outline-primary">
+</form>
+</div>
+{% endblock content %}

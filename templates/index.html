@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block customcss %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+<meta name=”viewport” content=”width=device-width, initial-scale=1”>
+{% endblock customcss %}
+
+{% block content %}
+
+<div class="container serch">
+    <form action="{% url 'index' %}" method="POST" id="serchform">
+        {% csrf_token %}
+        <p>サイト種類：
+            <select name="sitekind">
+            <option value="allkind">全種類</option>
+            <option value="blog">ブログサイト</option>
+            <option value="promo">プロモーションサイト</option>
+            <option value="portfo">ポートフォリオサイト</option>
+            <option value="ecsite">ECサイト</option>
+            <option value="corp">コーポレートサイト</option>
+            <option value="recru">リクルートサイト</option>
+            <option value="landing">ランディングページ</option>
+            </select>
+        </p>
+        <input class="btn btn-outline-primary serchbutton" type="submit" value="検索">
+    </form>
+</div>
+
+
+<div id="post">
+    <a href="{%url 'newfunc'%}">
+        <button type="button" class="btn btn-outline-primary">おしゃれサイトを投稿</button>
+    </a>
+    {{message}}
+</div>
+<div class="sites">
+{% for site in sites %}
+<div class="siteinfo">
+    <ul>
+        <div class="sitedetails">
+        <li>
+            <div class="site-detail">
+                <div class="left">サイト名</div>
+                <div class="right">{{site.name}}</div>
+            </div>
+        </li>
+        <li>
+            <div class="site-detail">
+                <div class="left">種類</div>
+                <div class="right">{{site.get_sitekind_display}}</div>
+            </div>
+        </li>
+        <li>
+            <div class="site-detail">
+                <div class="left">URL</div>
+                <div class="right"><a href="{{ site.siteurl }}">サイトへ移動</a></div>
+            </div>
+        </li>
+        <li>
+            <div class="site-detail">
+                <div class="left">投稿者</div>
+                <div class="right">{{site.postuser.name}}さん</div>
+            </div>
+        </li>
+        </div>
+        <li>
+            <div class="img_cover"><img src="{{site.images.url}}" width=300></div>
+        </li>
+    </ul>
+</div>
+    {% endfor %}
+</div>
+{% endblock %}
