@@ -28,6 +28,7 @@ def createfunc(request):
     password = request.POST['password']
     userinfo = UserModel.objects.filter(name=username)
     userinfo = userinfo.filter(password=password)
+    print(userinfo)
     siteCheck = SiteModel.objects.filter(siteurl=siteurl)
     if sitename == "" or sitekind == "" or siteurl == "" or username == "" or password == "":
         sites = SiteModel.objects.all().order_by('-id')
@@ -43,7 +44,7 @@ def createfunc(request):
             scshotfunc(siteurl)
             # サイト名.pngになるようにする
             oldname = 'noname.png'
-            newname = sitename + '.png'
+            newname = str(userinfo[0]) + sitename + '.png'
             os.rename('media/' + oldname, 'media/' + newname)
             siteinfo = SiteModel(name=sitename, sitekind=sitekind, siteurl=siteurl, gooduser='', postuser=userinfo[0], images=newname)
             siteinfo.save()
