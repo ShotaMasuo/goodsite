@@ -22,7 +22,7 @@ Python3, django, web driver(Chrome)
     ![検索機能](https://user-images.githubusercontent.com/63441901/91238482-17d2bc80-e778-11ea-9dc8-56aa4ea9eb8b.gif)
 
 1. 投稿機能
-    - 登録済みユーザーの場合は、必要事項を入力後登録を行えます
+    - 登録済みユーザーの場合は、必要事項を入力後登録を行えます。「サイトへ移動」をクリックすると、登録されたURLに遷移します。
     
     ![サイト投稿-会員](https://user-images.githubusercontent.com/63441901/91238480-16a18f80-e778-11ea-94a7-f04bc866607b.gif)
    
